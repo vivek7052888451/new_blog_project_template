@@ -1,6 +1,6 @@
 @extends('layouts.forntend.app')
 @section('title')
-<title>{{env('APP_NAME')}} |Home</title>
+<title>{{env('APP_NAME')}} | Post Datails</title>
 @endsection
 
 @section('content')
@@ -45,14 +45,7 @@
                 </div>
               </div>
             </div>
-            <div class="tags">
-              <ul>
-                <li><a href="#">lifestyle</a></li>
-                <li><a href="#">Art</a></li>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Fashion</a></li>
-              </ul>
-            </div>
+            
             <div class="single-post-content">
              <p>{!! Str :: limit($posts->discription,800) !!}</p>
               </div>
@@ -76,31 +69,7 @@
                 </div>
               </div>
 
-              <section class="nav-area pt-50 pb-100">
-                <div class="container">
-                  <div class="row justify-content-between">
-                    <div class="col-sm-6 nav-left justify-content-start d-flex">
-                      <div class="thumb">
-                        <img src="img/prev.jpg" alt="">
-                      </div>
-                      <div class="details">
-                        <p>Prev Post</p>
-                        <h4 class="text-uppercase"><a href="#">A Discount Toner</a></h4>
-                      </div>
-                    </div>
-                    <div class="col-sm-6 nav-right justify-content-end d-flex">
-                      <div class="details">
-                        <p>Prev Post</p>
-                        <h4 class="text-uppercase"><a href="#">A Discount Toner</a></h4>
-                      </div>
-                      <div class="thumb">
-                        <img src="img/next.jpg" alt="">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
+              
 
               <section class="comment-sec-area pt-80 pb-80">
                 <div class="container">
@@ -229,14 +198,17 @@
           <div class="col-lg-4 sidebar-area ">
             <div class="single_widget search_widget">
               <div id="imaginary_container">
+                <form action="{{route('search')}}" method="get">
+                
                 <div class="input-group stylish-input-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                  <span class="input-group-addon">
-                    <button type="submit">
-                      <span class="lnr lnr-magnifier"></span>
-                    </button>
-                  </span>
-                </div>
+                <input type="text" class="form-control"name="search" placeholder="Search">
+                <span class="input-group-addon">
+                  <button type="submit">
+                    <span class="lnr lnr-magnifier"></span>
+                  </button>
+                </span>
+              </div>
+              </form>
               </div>
             </div>
           
@@ -269,27 +241,18 @@
             <div class="single_widget recent_widget">
               <h4 class="text-uppercase pb-20">Recent Posts</h4>
               <div class="active-recent-carusel">
-                <div class="item">
-                  <img src="img/asset/slider.jpg" alt="">
-                  <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                  For Everyone</p>
-                  <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                  </div>
-                  <div class="item">
-                    <img src="img/asset/slider.jpg" alt="">
-                    <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                    For Everyone</p>
-                    <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                      06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                    </div>
+               @isset($latest_threes)
+               @foreach($latest_threes as $latest_three)
                     <div class="item">
-                      <img src="img/asset/slider.jpg" alt="">
+                      <img src="{{asset('backend/images/uploads/'.$latest_three->image)}}" alt="">
                       <p class="mt-20 title text-uppercase">Home Audio Recording <br>
                       For Everyone</p>
                       <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
                         06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
                       </div>
+                      @endforeach
+                      @endisset
+
                     </div>
                   </div>
                   <div class="single_widget cat_widget">

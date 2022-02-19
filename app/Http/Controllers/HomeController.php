@@ -31,8 +31,8 @@ class HomeController extends Controller
          $latest_posts=Blog::latest()->take(5)->get();
         $comments =Comment::latest()->where("blog_id",$blog_id)->get();
 
-        
-        return view('postdetails')->with(compact('posts','latest_posts','comments'));     
+        $latest_threes=Blog::latest()->take(3)->get();
+        return view('postdetails')->with(compact('posts','latest_posts','comments','latest_threes'));     
     }
 
     public function postComment(Request $request)

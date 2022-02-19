@@ -15,17 +15,41 @@
 					
 					<li><a href="#fashion">About</a></li>
 					
+                    @if (Route::has('login'))
+                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                    @auth
+                     @if(Auth::user()->role->id=='1')
+                     <a href="{{route('admin.dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{Auth::user()->name}}</a>
+                     @elseif(Auth::user()->role->id=='2')
+                     <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
 
-					<li class="dropdown">
-						<a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-							Pages
-						</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="single.html">Single</a>
-							<a class="dropdown-item" href="category.html">Category</a>
-							
-						</div>
-					</li>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                     </li>
+                     @else
+                     null
+                     @endif
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+					
 				</ul>
 			</div>
 		</div>

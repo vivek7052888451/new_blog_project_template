@@ -48,7 +48,7 @@
       <div class="item single-cat">
         <img src="{{ asset('backend/images/uploads/'.$latest_blog->image)}}" alt="">
         <p class="date">{{$latest_blog->created_at->diffForHumans()}}</p>
-        <h4><a href="{{route('category-list',$latest_blog->slug)}}">It S Hurricane Season Visiting Hilton</a></h4>
+        <h4><a href="{{route('post',$latest_blog->slug)}}">{{$latest_blog->title}}</a></h4>
       </div>
     </div>
     @endforeach
@@ -79,9 +79,8 @@
             <p>Dec</p>
           </div>
           <div class="media-body align-self-center">
-            <h4 class="mt-0"><a href="{{route('post',$latest_blog->slug)}}">Addiction When Gambling
-            Becomes A Problem</a></h4>
-            <p>inappropriate behavior Lorem ipsum dolor sit amet, consectetur.</p>
+            <h4 class="mt-0"><a href="{{route('post',$latest_blog->slug)}}">{{$latest_blog->title}}</a></h4>
+            <p>{!!$latest_blog->discription!!}</p>
             <div class="meta-bottom d-flex justify-content-between">
               <p><span class="lnr lnr-heart"></span> 15 Likes</p>
               <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
