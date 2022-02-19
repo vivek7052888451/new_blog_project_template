@@ -76,6 +76,8 @@
                   <div class="row flex-column">
                     <h5 class="text-uppercase pb-80">05 Comments</h5>
                     <br>
+                    @isset($comments)
+                    @foreach($comments as $comment)
                     <div class="comment-list">
                       <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
@@ -83,10 +85,10 @@
                             <img src="img/asset/c1.jpg" alt="">
                           </div>
                           <div class="desc">
-                            <h5><a href="#">Emilly Blunt</a></h5>
-                            <p class="date">December 4, 2017 at 3:12 pm </p>
+                            <h5><a href="#">{{$comment->username}}</a></h5>
+                            <p class="date">{{$comment->created_at->diffForHumans()}}</p>
                             <p class="comment">
-                              Never say goodbye till the end comes!
+                              {{$comment->comment}}
                             </p>
                           </div>
                         </div>
@@ -95,82 +97,10 @@
                         </div>
                       </div>
                     </div>
-                    <div class="comment-list left-padding">
-                      <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                          <div class="thumb">
-                            <img src="img/asset/c2.jpg" alt="">
-                          </div>
-                          <div class="desc">
-                            <h5><a href="#">Emilly Blunt</a></h5>
-                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                            <p class="comment">
-                              Never say goodbye till the end comes!
-                            </p>
-                          </div>
-                        </div>
-                        <div class="reply-btn">
-                          <a href="#" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="comment-list left-padding">
-                      <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                          <div class="thumb">
-                            <img src="img/asset/c3.jpg" alt="">
-                          </div>
-                          <div class="desc">
-                            <h5><a href="#">Emilly Blunt</a></h5>
-                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                            <p class="comment">
-                              Never say goodbye till the end comes!
-                            </p>
-                          </div>
-                        </div>
-                        <div class="reply-btn">
-                          <a href="#" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="comment-list">
-                      <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                          <div class="thumb">
-                            <img src="img/asset/c4.jpg" alt="">
-                          </div>
-                          <div class="desc">
-                            <h5><a href="#">Emilly Blunt</a></h5>
-                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                            <p class="comment">
-                              Never say goodbye till the end comes!
-                            </p>
-                          </div>
-                        </div>
-                        <div class="reply-btn">
-                          <a href="#" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="comment-list">
-                      <div class="single-comment justify-content-between d-flex">
-                        <div class="user justify-content-between d-flex">
-                          <div class="thumb">
-                            <img src="img/asset/c5.jpg" alt="">
-                          </div>
-                          <div class="desc">
-                            <h5><a href="#">Emilly Blunt</a></h5>
-                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                            <p class="comment">
-                              Never say goodbye till the end comes!
-                            </p>
-                          </div>
-                        </div>
-                        <div class="reply-btn">
-                          <a href="#" class="btn-reply text-uppercase">reply</a>
-                        </div>
-                      </div>
-                    </div>
+                    @endforeach
+                    @endisset
+                   
+                   
                   </div>
                 </div>
               </section>
@@ -180,14 +110,15 @@
                 <div class="container">
                   <h5 class="text-uppercas pb-50">Leave a Reply</h5>
                   <div class="row flex-row d-flex">
-                    <div class="col-lg-6">
-                      <input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required type="text">
-                      <input name="email" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your email'" class="common-input mb-20 form-control" required type="email">
-                      <input name="Subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Subject'" class="common-input mb-20 form-control" required type="text">
-                    </div>
-                    <div class="col-lg-6">
-                      <textarea class="form-control mb-10" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required></textarea>
-                      <a class="primary-btn mt-20" href="#">Comment</a>
+                    
+                    <div class="col-lg-12">
+                      <form id="comment_data">
+                        @csrf
+                      <input type="hidden" name="blog_id" value="{{$posts->id}}">
+                      <textarea class="form-control mb-10" name="comment" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required></textarea>
+                      
+                      <button class="primary-btn mt-20" type="submit">Comment</button>
+                    </form>
                     </div>
                   </div>
                 </div>
@@ -239,54 +170,89 @@
               </ul>
             </div>
             <div class="single_widget recent_widget">
-              <h4 class="text-uppercase pb-20">Recent Posts</h4>
-              <div class="active-recent-carusel">
-               @isset($latest_threes)
-               @foreach($latest_threes as $latest_three)
-                    <div class="item">
-                      <img src="{{asset('backend/images/uploads/'.$latest_three->image)}}" alt="">
-                      <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                      For Everyone</p>
-                      <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                      </div>
-                      @endforeach
-                      @endisset
-
-                    </div>
-                  </div>
-                  <div class="single_widget cat_widget">
-                    <h4 class="text-uppercase pb-20">post archive</h4>
-                    <ul>
-                      <li>
-                        <a href="#">Dec'17 <span>37</span></a>
-                      </li>
-                      <li>
-                        <a href="#">Nov'17 <span>37</span></a>
-                      </li>
-                      <li>
-                        <a href="#">Oct'17 <span>37</span></a>
-                      </li>
-                      <li>
-                        <a href="#">Sept'17 <span>37</span></a>
-                      </li>
-                      <li>
-                        <a href="#">Aug'17 <span>37</span></a>
-                      </li>
-                      <li>
-                        <a href="#">Jul'17 <span>37</span></a>
-                      </li>
-                      <li>
-                        <a href="#">Jun'17 <span>37</span></a>
-                      </li>
-                    </ul>
-                  </div>
-                
+            <h4 class="text-uppercase pb-20">Recent Posts</h4>
+            <div class="active-recent-carusel">
+              <div class="item">
+                <img src="img/asset/xslider.jpg.pagespeed.ic.2wIBj9CEIN.jpg" alt="">
+                <p class="mt-20 title text-uppercase">Home Audio Recording <br>
+                For Everyone</p>
+                <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
+                  06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
                 </div>
+                @isset($latest_threes)
+                @foreach($latest_threes as $latest_three)
+                  <div class="item">
+                    <img src="{{ asset('backend/images/uploads/'.$latest_three->image)}}" alt="">
+                    <p class="mt-20 title text-uppercase">Home Audio Recording <br>
+                    For Everyone</p>
+                    <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
+                    </div>
+                    @endforeach
+                    @endisset
+
+                  </div>
+                </div>
+              
               </div>
+            </div>
+          </div>
             </div>
           </section>
 
         </div>
 
         @endsection
+
+         @section('custom')
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+<script>
+if ($("#comment_data").length > 0) {
+$("#comment_data").validate({
+rules: {
+comment: {
+required: true,
+},   
+},
+messages: {
+comment: {
+required: "Please enter comment",
+},
+
+},
+ submitHandler: function(form) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                   $.ajax({
+                    type: 'POST',
+                    url: '{{ route("post-comment") }}',
+                    
+                    data: new FormData($("#comment_data")[0]),
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                       
+                         // $('.blog_add_btn').html('Submit');
+                         // $('.blog_add_btn').prop('disabled', false);
+                       
+                        document.getElementById("comment_data").reset();
+                        location.reload();    
+                    },
+                    error: function (error) {
+                       
+                    }
+                });
+         
+            }
+})
+}
+</script>
+    @endsection

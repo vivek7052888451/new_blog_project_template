@@ -18,6 +18,8 @@
 
 
 @include('layouts.forntend.include.footerlink')
+
+@yield('custom')
 </body>
 
 <!-- Mirrored from preview.colorlib.com/theme/blogger/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 18 Feb 2022 07:18:45 GMT -->
