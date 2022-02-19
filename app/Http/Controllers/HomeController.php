@@ -18,7 +18,7 @@ class HomeController extends Controller
        
         $blogs=Blog::all();
       
-        $latest_blogs=Blog::latest()->take(8)->get();
+        $latest_blogs=Blog::latest()->take(6)->get();
         return view('index')->with(compact('blogs','latest_blogs','blog_categorys'));
     }
 
@@ -61,20 +61,30 @@ class HomeController extends Controller
     public function allPost()
     {
         $blog_categorys=Category::latest()->get();
-         $blogs=Blog::latest()->get();
-          $latest_one=Blog::latest()->take(1)->first(); 
+         $blogs=Blog::latest()->paginate(10);
+          $latest_threes=Blog::latest()->take(3)->get(); 
 
-        return view('allblog')->with(compact('blogs','latest_one','blog_categorys'));
+        return view('allblog')->with(compact('blogs','latest_threes','blog_categorys'));
     }
 
     public function categoryList($slug)
     {
+
         $category=Category::where('slug',$slug)->get('id');        
-        $category_data=Blog::where('category_id',$category[0]->id)->get();     
+        $category_datas=Blog::where('category_id',$category[0]->id)->get();     
         
         $latest_category=Category::latest()->get();
-         $latestposts=Blog::latest()->get(); 
+         $latestposts=Blog::latest()->get();
+         $latest_threes=Blog::latest()->take(3)->get();  
 
-       return view('listing')->with(compact('latestposts','category','category_data'));
+       return view('listing')->with(compact('latestposts','category','category_datas','latest_threes'));
+    }
+
+    public function allCategory()
+    {
+        $latest_categorys=Category::latest()->get();
+
+        return view('category')->with(compact('latest_categorys'));
+
     }
 }

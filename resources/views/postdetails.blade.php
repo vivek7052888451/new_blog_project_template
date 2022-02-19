@@ -12,8 +12,8 @@
         <h1 class="text-white mb-20">Post Details</h1>
         <ul>
           <li><a href="index-2.html">Home</a><span class="lnr lnr-arrow-right"></span></li>
-          <li><a href="category.html">Category</a><span class="lnr lnr-arrow-right"></span></li>
-          <li><a href="single.html">Fashion</a></li>
+          <li><a href="category.html">Post Details</a></li>
+          
         </ul>
       </div>
     </div>
@@ -28,11 +28,11 @@
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="single-page-post">
-            <img class="img-fluid" src="img/single.jpg" alt="">
+            <img class="img-fluid" src="{{ asset('backend/images/uploads/'.$posts->image)}}" alt="">
             <div class="top-wrapper ">
               <div class="row d-flex justify-content-between">
                 <h2 class="col-lg-8 col-md-12 text-uppercase">
-                  A Discount Toner Cartridge Is Better Than Ever
+                 {!!$posts->title!!}
                 </h2>
                 <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                   <div class="desc">
@@ -54,20 +54,7 @@
               </ul>
             </div>
             <div class="single-post-content">
-              <p>
-                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.
-              </p>
-              <p>
-                MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually sit through a self-imposed MCSE training.
-              </p>
-              <blockquote>Ea possunt paria non esse. Pudebit te, inquam, illius tabulae, quam Cleanthes sane commode verbis depingere solebat. Urgent tamen et nihil remittunt. An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia? Sint ista Graecorum; Cur igitur, cum de re conveniat, non malumus usitate loqui? Huius ego nunc auctoritatem sequens idem faciam.
-                <cite>Wise Man</cite></blockquote>
-                <p>
-                  MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training.
-                </p>
-                <p>
-                  MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower to actually sit through a self-imposed MCSE training. who has the willpower to actually sit through a self-imposed MCSE training.
-                </p>
+             <p>{!! Str :: limit($posts->discription,800) !!}</p>
               </div>
               <div class="bottom-wrapper">
                 <div class="row">
@@ -252,18 +239,7 @@
                 </div>
               </div>
             </div>
-            <div class="single_widget about_widget">
-              <img src="img/asset/s-img.jpg" alt="">
-              <h2 class="text-uppercase">Adele Gonzalez</h2>
-              <p>
-                MCSE boot camps have its supporters and
-                its detractors. Some people do not understand why you should have to spend money
-              </p>
-              <div class="social-link">
-                <a href="#"><button class="btn"><i class="fa fa-facebook" aria-hidden="true"></i> Like</button></a>
-                <a href="#"><button class="btn"><i class="fa fa-twitter" aria-hidden="true"></i> follow</button></a>
-              </div>
-            </div>
+          
             <div class="single_widget cat_widget">
               <h4 class="text-uppercase pb-20">post categories</h4>
               <ul>
@@ -342,20 +318,7 @@
                       </li>
                     </ul>
                   </div>
-                  <div class="single_widget tag_widget">
-                    <h4 class="text-uppercase pb-20">Tag Clouds</h4>
-                    <ul>
-                      <li><a href="#">Lifestyle</a></li>
-                      <li><a href="#">Art</a></li>
-                      <li><a href="#">Adventure</a></li>
-                      <li><a href="#">Food</a></li>
-                      <li><a href="#">Technology</a></li>
-                      <li><a href="#">Fashion</a></li>
-                      <li><a href="#">Adventure</a></li>
-                      <li><a href="#">Food</a></li>
-                      <li><a href="#">Technology</a></li>
-                    </ul>
-                  </div>
+                
                 </div>
               </div>
             </div>

@@ -30,25 +30,25 @@
     </div>
   </div>
 </section>
-@isset($blog_categorys)
+@isset($latest_blogs)
 
 <section class="category-area section-gap" id="news">
   <div class="container">
     <div class="row d-flex justify-content-center">
       <div class="menu-content pb-70 col-lg-8">
         <div class="title text-center">
-          <h1 class="mb-10">Latest News from all categories</h1>
+          <h1 class="mb-10">Latest Post</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
       </div>
     </div>
     <div class="row active-cat-carusel">
-      @foreach($blog_categorys as $blog_category)
+      @foreach($latest_blogs as $latest_blog)
       <div class="col-sm-4">
       <div class="item single-cat">
-        <img src="{{ asset('backend/images/category/'.$blog_category->category_icon)}}" alt="">
-        <p class="date">10 Jan 2018</p>
-        <h4><a href="{{route('category-list',$blog_category->slug)}}">It S Hurricane Season Visiting Hilton</a></h4>
+        <img src="{{ asset('backend/images/uploads/'.$latest_blog->image)}}" alt="">
+        <p class="date">{{$latest_blog->created_at->diffForHumans()}}</p>
+        <h4><a href="{{route('category-list',$latest_blog->slug)}}">It S Hurricane Season Visiting Hilton</a></h4>
       </div>
     </div>
     @endforeach
@@ -64,7 +64,7 @@
     <div class="row d-flex justify-content-center">
       <div class="menu-content pb-70 col-lg-8">
         <div class="title text-center">
-          <h1 class="mb-10">Hot topics from Travel Section</h1>
+          <h1 class="mb-10">Popular Posts</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         </div>
       </div>
@@ -97,73 +97,7 @@
 </section>
 
 
-<section class="fashion-area section-gap" id="fashion">
-  <div class="container">
-    <div class="row d-flex justify-content-center">
-      <div class="menu-content pb-70 col-lg-8">
-        <div class="title text-center">
-          <h1 class="mb-10">Fashion News This Week</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-md-6 single-fashion">
-        <img class="img-fluid" src="{{ asset('frontend/img/f1.jpg')}}" alt="">
-        <p class="date">10 Jan 2018</p>
-        <h4><a href="#">Addiction When Gambling
-        Becomes A Problem</a></h4>
-        <p>
-          inappropriate behavior ipsum dolor sit amet, consectetur.
-        </p>
-        <div class="meta-bottom d-flex justify-content-between">
-          <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-          <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 single-fashion">
-        <img class="img-fluid" src="{{ asset('frontend/img/f2.jpg')}}" alt="">
-        <p class="date">10 Jan 2018</p>
-        <h4><a href="#">Addiction When Gambling
-        Becomes A Problem</a></h4>
-        <p>
-          inappropriate behavior ipsum dolor sit amet, consectetur.
-        </p>
-        <div class="meta-bottom d-flex justify-content-between">
-          <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-          <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 single-fashion">
-        <img class="img-fluid" src="{{ asset('frontend/img/f3.jpg')}}" alt="">
-        <p class="date">10 Jan 2018</p>
-        <h4><a href="#">Addiction When Gambling
-        Becomes A Problem</a></h4>
-        <p>
-          inappropriate behavior ipsum dolor sit amet, consectetur.
-        </p>
-        <div class="meta-bottom d-flex justify-content-between">
-          <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-          <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 single-fashion">
-        <img class="img-fluid" src="{{ asset('frontend/img/f4.jpg')}}" alt="">
-        <p class="date">10 Jan 2018</p>
-        <h4><a href="#">Addiction When Gambling
-        Becomes A Problem</a></h4>
-        <p>
-          inappropriate behavior ipsum dolor sit amet, consectetur.
-        </p>
-        <div class="meta-bottom d-flex justify-content-between">
-          <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-          <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-        </div>
-      </div>
-      <a href="#" class="primary-btn load-more pbtn-2 text-uppercase mx-auto mt-60">Load More </a>
-    </div>
-  </div>
-</section>
+
 
 
 <section class="team-area section-gap" id="team">

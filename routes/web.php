@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\BlogController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');  
+  
 
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']],function()
 {
@@ -52,8 +52,11 @@ Route::group(['prefix'=>'user','as'=>'user.','namespace'=>'User','middleware'=>[
 
 });
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
  Route::get('allblog',[HomeController::class, 'allPost'])->name('allblog');
  Route::get('post/{id}',[HomeController::class, 'post'])->name('post');
  Route::post('post-comment',[HomeController::class, 'postComment'])->name('post-comment');
+ Route::get('category',[HomeController::class, 'allCategory'])->name('category');
 
  Route::get('category-list/{id}',[HomeController::class, 'categoryList'])->name('category-list');
