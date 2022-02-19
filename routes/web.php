@@ -60,3 +60,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
  Route::get('category',[HomeController::class, 'allCategory'])->name('category');
 
  Route::get('category-list/{id}',[HomeController::class, 'categoryList'])->name('category-list');
+
+ Route::get('search',[HomeController::class, 'search'])->name('search');

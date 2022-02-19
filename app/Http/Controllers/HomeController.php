@@ -87,4 +87,16 @@ class HomeController extends Controller
         return view('category')->with(compact('latest_categorys'));
 
     }
+
+    public function search(Request $request)
+    {
+
+        $this->validate($request,['search'=>'required |max:255']);
+        $search=$request->search;
+        $posts=Blog::where('title','like', "%$search%")->get();
+
+        $latest_threes=Blog::latest()->take(3)->get();
+
+        return view('search')->with(compact('posts','latest_threes'));
+    }
 }
