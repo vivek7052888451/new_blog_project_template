@@ -12,7 +12,7 @@
 					<li><a href="{{route('home')}}">Home</a></li>
 					<li><a href="{{route('allblog')}}">Post</a></li>
 					<li><a href="{{route('category')}}">Category</a></li>
-					<li><a href="{{route('search')}}">Search</a></li>
+					
 					<li><a href="#fashion">About</a></li>
 					
 
