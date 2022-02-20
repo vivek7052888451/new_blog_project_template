@@ -23,4 +23,10 @@ class AdminDashboardController extends Controller
        return view('admin.index')->with(compact('comments','userCount','blogCount','commentCount'));
    }
 
+   public function adminProfile()
+   {
+    //dd('profile');
+    return view('admin.adminProfile');
+   }
+
 }

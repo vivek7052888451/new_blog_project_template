@@ -8,16 +8,20 @@
 	<div class="container">
 		<div class="row justify-content-center align-items-center d-flex">
 			<div class="col-lg-8">
-				<div id="imaginary_container">
-					<div class="input-group stylish-input-group">
-						<input type="text" class="form-control" placeholder="Addictionwhen gambling" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Addictionwhen gambling '" required>
-						<span class="input-group-addon">
-							<button type="submit">
-								<span class="lnr lnr-magnifier"></span>
-							</button>
-						</span>
-					</div>
-				</div>
+					<div id="imaginary_container">
+							<form action="{{route('search')}}" method="get">
+								
+								<div class="input-group stylish-input-group">
+								<input type="text" class="form-control"name="search" placeholder="Search">
+								<span class="input-group-addon">
+									<button type="submit">
+										<span class="lnr lnr-magnifier"></span>
+									</button>
+								</span>
+							</div>
+							</form>
+							
+						</div>
 				<p class="mt-20 text-center text-white">169 results found for “Addictionwhen gambling”</p>
 			</div>
 		</div>
@@ -40,7 +44,7 @@
 								<div class="date">
 									<span>20</span><br>Dec
 								</div>
-								<img src="{{asset('backend/images/uploads/'.$post->image)}}" alt="">
+								<img src="{{asset('backend/images/uploads/'.$post->image)}}" alt="" width="400px" height="200px">
 							</div>
 							<div class="detail">
 								<a href="#"><h4 class="pb-20">{{$post->title}}</h4></a>
@@ -65,16 +69,20 @@
 					</div>
 				</div>
 				<div class="col-lg-4 sidebar-area">
-					<div class="single_widget search_widget">
+						<div class="single_widget search_widget">
 						<div id="imaginary_container">
-							<div class="input-group stylish-input-group">
-								<input type="text" class="form-control" placeholder="Search">
+							<form action="{{route('search')}}" method="get">
+								
+								<div class="input-group stylish-input-group">
+								<input type="text" class="form-control"name="search" placeholder="Search">
 								<span class="input-group-addon">
 									<button type="submit">
 										<span class="lnr lnr-magnifier"></span>
 									</button>
 								</span>
 							</div>
+							</form>
+							
 						</div>
 					</div>
 					

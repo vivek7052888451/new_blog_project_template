@@ -31,6 +31,7 @@ Auth::routes();
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']],function()
 {
     Route::get('dashboard',[AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('profile',[AdminDashboardController::class, 'adminProfile'])->name('profile');
 
      Route::get('user',[UserController::class, 'index'])->name('user');
       Route::get('blog',[BlogController::class, 'index'])->name('blog');
@@ -42,13 +43,14 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
       Route::post('category-add',[BlogController::class, 'addCategory'])->name('category-add');
       Route::post('category-delete',[BlogController::class, 'deleteCategory'])->name('category-delete');
        Route::post('category-update',[BlogController::class, 'categoryUpdate'])->name('category-update');
+      Route::post('user-delete',[UserController::class, 'deleteUser'])->name('user-delete');
       
 });
 
 
 Route::group(['prefix'=>'user','as'=>'user.','namespace'=>'User','middleware'=>['auth','user']],function()
 {
-    //Route::get('dashboard',[UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard',[UserDashboardController::class, 'index'])->name('dashboard');
 
 });
 

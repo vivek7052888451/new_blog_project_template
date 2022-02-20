@@ -9,7 +9,7 @@
                 <a class="navbar-brand" href="./"><img src="{{ asset('backend/images/logo.png')}}" alt="Logo"></a>
                 <a class="navbar-brand hidden" href="./"><img src="{{ asset('backend/images/logo2.png')}}" alt="Logo"></a>
             </div>
-
+         @if(Auth::user()->role->id=='1')
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
@@ -40,5 +40,28 @@
                 
                 </ul>
             </div><!-- /.navbar-collapse -->
+            @elseif(Auth::user()->role->id=='2')
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="{{route('user.dashboard')}}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                    <h3 class="menu-title"></h3><!-- /.menu-title -->
+                   
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>User</a>
+                        <ul class="sub-menu children dropdown-menu">
+                        
+                             <li><i class="fa fa-table"></i><a href="#">Users</a></li>
+                           
+                        </ul>
+                    </li>
+                   
+                
+                </ul>
+            </div><!-- /.navbar-collapse -->
+            @endif
+
+
         </nav>
     </aside>

@@ -13,13 +13,35 @@
 					<li><a href="{{route('allblog')}}">Post</a></li>
 					<li><a href="{{route('category')}}">Category</a></li>
 					
-					<li><a href="#fashion">About</a></li>
+					{{--<li><a href="#fashion">About</a></li>--}}
 					
                     @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                      @if(Auth::user()->role->id=='1')
-                     <a href="{{route('admin.dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">{{Auth::user()->name}}</a>
+
+                    
+                       <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a href="{{route('admin.dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                            <a href="{{route('admin.profile') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Profile</a>
+
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                     </li>
+
                      @elseif(Auth::user()->role->id=='2')
                      <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -27,6 +49,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a href="{{route('user.dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

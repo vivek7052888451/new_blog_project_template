@@ -90,8 +90,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteUser(Request $request)
     {
-        //
+        $id = $request->id;
+         $data=User::find($id);
+
+        $deleteBlog=$data->delete();
+
+             if ($deleteBlog) {
+            return response()->json(['success'=>'done']);
+        }
+        else {
+            return response()->json(['error'=>'failed']);
+        }
     }
+
+
 }
