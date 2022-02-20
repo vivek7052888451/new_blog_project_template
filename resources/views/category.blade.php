@@ -39,7 +39,7 @@
 			<div class="item single-cat">
 				<img src="{{asset('backend/images/category/'.$latest_category->category_icon)}}" alt="">
 				<p class="date">10 Jan 2018</p>
-				<h4><a href="{{route('category-list',$latest_category->slug)}}">Les Houches The Hidden Gem Valley</a></h4>
+				<h4><a href="{{route('category-list',$latest_category->slug)}}">{{$latest_category->category_name}}</a></h4>
 			</div>
 			@endforeach
 			@endisset
@@ -63,14 +63,13 @@
 			<div class="col-lg-6 travel-right">
 				
 				<div class="single-travel media">
-					<img class="img-fluid d-flex  mr-3" src="{{asset('backend/images/category/'.$latest_category->category_icon)}}" alt="">
+					<img class="img-fluid d-flex  mr-3" width="250" height="250"  src="{{asset('backend/images/category/'.$latest_category->category_icon)}}" alt="">
 					<div class="dates">
 						<span>20</span>
 						<p>Dec</p>
 					</div>
 					<div class="media-body align-self-center">
-						<h4 class="mt-0"><a href="#">Addiction When Gambling
-						Becomes A Problem</a></h4>
+						<h4 class="mt-0"><a href="{{route('category-list',$latest_category->slug)}}">{{$latest_category->category_name}}</a></h4>
 						<p>inappropriate behavior Lorem ipsum dolor sit amet, consectetur.</p>
 						<div class="meta-bottom d-flex justify-content-between">
 							<p><span class="lnr lnr-heart"></span> 15 Likes</p>

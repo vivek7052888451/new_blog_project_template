@@ -111,6 +111,7 @@
                                             <th>User Id</th>
                                             <th>User Name</th>
                                             <th>User Email</th>
+                                            <th>Action</th>
                                             
                                         </tr>
                                     </thead>
@@ -122,6 +123,10 @@
                                             <td>{{$totalUser->userid}}</td>
                                             <td>{{$totalUser->name}}</td>
                                             <td>{{$totalUser->email}}</td>
+                                             
+                                            <td class="text-center">
+                                             <a href=""  class="btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal_{{$totalUser->id}}"><span data-toggle="tooltip" data-placement="top" title="Edit blog"><i class="fa fa-trash" aria-hidden="true"></i></span></a>
+                                            </td>
                                            
                                         </tr>
                                         @endforeach

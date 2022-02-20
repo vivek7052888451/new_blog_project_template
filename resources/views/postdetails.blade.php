@@ -182,7 +182,7 @@
                 @isset($latest_threes)
                 @foreach($latest_threes as $latest_three)
                   <div class="item">
-                    <img src="{{ asset('backend/images/uploads/'.$latest_three->image)}}" alt="">
+                    <img src="{{ asset('backend/images/uploads/'.$latest_three->image)}}" width="200" height="200" alt="">
                     <p class="mt-20 title text-uppercase">Home Audio Recording <br>
                     For Everyone</p>
                     <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>

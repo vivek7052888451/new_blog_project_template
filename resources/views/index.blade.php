@@ -1,3 +1,5 @@
+
+   
 @extends('layouts.forntend.app')
 @section('title')
 <title>{{env('APP_NAME')}} |Home</title>
@@ -73,14 +75,14 @@
       @foreach($latest_blogs as $latest_blog)
       <div class="col-lg-6 travel-left">
         <div class="single-travel media pb-70">
-          <img class="img-fluid d-flex  mr-3" src="{{ asset('backend/images/uploads/'.$latest_blog->image)}}" alt="">
+          <img class="img-fluid d-flex  mr-3" width="350" height="350" src="{{ asset('backend/images/uploads/'.$latest_blog->image)}}" alt="$latest_blog->image">
           <div class="dates">
             <span>20</span>
             <p>Dec</p>
           </div>
           <div class="media-body align-self-center">
             <h4 class="mt-0"><a href="{{route('post',$latest_blog->slug)}}">{{$latest_blog->title}}</a></h4>
-            <p>{!!$latest_blog->discription!!}</p>
+            <p>{!! Str :: limit($latest_blog->discription,400) !!}</p>
             <div class="meta-bottom d-flex justify-content-between">
               <p><span class="lnr lnr-heart"></span> 15 Likes</p>
               <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
@@ -89,15 +91,10 @@
         </div>     
       </div>
       @endforeach
-      
-      <a href="#" class="primary-btn load-more pbtn-2 text-uppercase mx-auto mt-60">Load More </a>
     </div>
   </div>
+
 </section>
-
-
-
-
 
 <section class="team-area section-gap" id="team">
   <div class="container">

@@ -39,10 +39,10 @@
 									<img class="img-fluid" src="{{ asset('backend/images/uploads/'.$category_data->image)}}" alt="">
 									<div class="date mt-20 mb-20">10 Jan 2018</div>
 									<div class="detail">
-										<a href="#"><h4 class="pb-20">Addiction When Gambling <br>
-										Becomes A Problem</h4></a>
+										<a href="{{route('post',$category_data->slug)}}"><h4 class="pb-20"> 
+										{{$category_data->title}}</h4></a>
 										<p>
-											inappropriate behavior Lorem ipsum dolor sit amet, consecteturinapprop riate behavior Lorem ipsum dolor sit amet, consectetur.
+											{!!$category_data->discription!!}
 										</p>
 										<p class="footer pt-20">
 											<i class="fa fa-heart-o" aria-hidden="true"></i>
