@@ -37,7 +37,7 @@
                 <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
                   <div class="desc">
                     <h2>Mark wiens</h2>
-                    <h3>12 Dec ,2017 11:21 am</h3>
+                    <h3>{{$posts->created_at->diffForHumans()}}</h3>
                   </div>
                   <div class="user-img">
                     <img src="img/xuser.jpg.pagespeed.ic.KzuN75gNLV.jpg" alt="">
@@ -172,20 +172,13 @@
             <div class="single_widget recent_widget">
             <h4 class="text-uppercase pb-20">Recent Posts</h4>
             <div class="active-recent-carusel">
-              <div class="item">
-                <img src="img/asset/xslider.jpg.pagespeed.ic.2wIBj9CEIN.jpg" alt="">
-                <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                For Everyone</p>
-                <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                  06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                </div>
+             
                 @isset($latest_threes)
                 @foreach($latest_threes as $latest_three)
                   <div class="item">
                     <img src="{{ asset('backend/images/uploads/'.$latest_three->image)}}" width="200" height="200" alt="">
-                    <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                    For Everyone</p>
-                    <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
+                   <a href="{{route('post',$latest_three->slug)}}"> <p class="mt-20 title text-uppercase">{{$latest_three->title}}</p></a>
+                    <p>{{$latest_three->created_at->diffForHumans()}} <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
                       06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
                     </div>
                     @endforeach
@@ -206,7 +199,7 @@
 
          @section('custom')
     
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 

@@ -25,8 +25,26 @@ class AdminDashboardController extends Controller
 
    public function adminProfile()
    {
-    //dd('profile');
-    return view('admin.adminProfile');
+    $admindata=User::where('role_id','1')->first();
+    return view('admin.adminProfile')->with(compact('admindata'));
+   }
+
+   public function updateProfile(Request $request)
+   {
+    $id=$request->id;
+    $name=$request->name;
+    $email=$request->email;
+    $userid=$request->userid;
+
+    $updatDatas=User::where('id',$id)->update(["name" => $name,"email" => $email,"userid" => $userid]);
+
+      if ($updatDatas) {
+            return response()->json(['success'=>'done']);
+        }
+        else {
+            return response()->json(['error'=>'failed']);
+        }
+    
    }
 
 }

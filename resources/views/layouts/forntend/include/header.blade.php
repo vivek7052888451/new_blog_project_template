@@ -50,6 +50,8 @@
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a href="{{route('user.dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+
+                            <a href="{{route('user.profile') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Profile</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

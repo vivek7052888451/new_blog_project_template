@@ -50,7 +50,7 @@
 
      <script>
         $(document).ready(function() {
-            toastr.options.timeOut = 200000;
+            toastr.options.timeOut = 20000;
             @if (Session::has('error'))
                 toastr.error('{{ Session::get('error') }}');
             @elseif(Session::has('success'))

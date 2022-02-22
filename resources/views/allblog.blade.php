@@ -35,12 +35,12 @@
 								@foreach($blogs as $blog)
 								<div class="single-posts col-lg-6 col-sm-6">
 									<img class="img-fluid" src="{{ asset('backend/images/uploads/'.$blog->image)}}" alt="">
-									<div class="date mt-20 mb-20">10 Jan 2018</div>
+									<div class="date mt-20 mb-20">{{$blog->created_at}}</div>
 									<div class="detail">
-										<a href="#"><h4 class="pb-20">Addiction When Gambling <br>
-										Becomes A Problem</h4></a>
+										<a href="{{route('post',$blog->slug)}}"><h4 class="pb-20">
+										{{$blog->title}}</h4></a>
 										<p>
-											inappropriate behavior Lorem ipsum dolor sit amet, consecteturinapprop riate behavior Lorem ipsum dolor sit amet, consectetur.
+											{!! Str :: limit($blog->discription,400) !!}
 										</p>
 										<p class="footer pt-20">
 											<i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -108,19 +108,12 @@
 					<div class="single_widget recent_widget">
 						<h4 class="text-uppercase pb-20">Recent Posts</h4>
 						<div class="active-recent-carusel">
-							<div class="item">
-								<img src="img/asset/xslider.jpg.pagespeed.ic.2wIBj9CEIN.jpg" alt="">
-								<p class="mt-20 title text-uppercase">Home Audio Recording <br>
-								For Everyone</p>
-								<p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-									06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-								</div>
+						
 								@isset($latest_threes)
 								@foreach($latest_threes as $latest_three)
 									<div class="item">
 										<img src="{{ asset('backend/images/uploads/'.$latest_three->image)}}" alt="">
-										<p class="mt-20 title text-uppercase">Home Audio Recording <br>
-										For Everyone</p>
+										<p class="mt-20 title text-uppercase">Home Audio Recording </p>
 										<p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
 											06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
 										</div>

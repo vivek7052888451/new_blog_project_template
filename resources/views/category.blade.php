@@ -38,7 +38,7 @@
 
 			<div class="item single-cat">
 				<img src="{{asset('backend/images/category/'.$latest_category->category_icon)}}" alt="">
-				<p class="date">10 Jan 2018</p>
+				<p class="date">{{$latest_category->created_at->diffForHumans()}}</p>
 				<h4><a href="{{route('category-list',$latest_category->slug)}}">{{$latest_category->category_name}}</a></h4>
 			</div>
 			@endforeach
@@ -65,8 +65,8 @@
 				<div class="single-travel media">
 					<img class="img-fluid d-flex  mr-3" width="250" height="250"  src="{{asset('backend/images/category/'.$latest_category->category_icon)}}" alt="">
 					<div class="dates">
-						<span>20</span>
-						<p>Dec</p>
+						{{--<span>20</span>--}}
+						<p>{{$latest_category->created_at->diffForHumans()}}</p>
 					</div>
 					<div class="media-body align-self-center">
 						<h4 class="mt-0"><a href="{{route('category-list',$latest_category->slug)}}">{{$latest_category->category_name}}</a></h4>

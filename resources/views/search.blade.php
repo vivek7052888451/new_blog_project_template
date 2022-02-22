@@ -47,7 +47,7 @@
 								<img src="{{asset('backend/images/uploads/'.$post->image)}}" alt="" width="400px" height="200px">
 							</div>
 							<div class="detail">
-								<a href="#"><h4 class="pb-20">{{$post->title}}</h4></a>
+								<a href="{{route('post',$post->slug)}}"><h4 class="pb-20">{{$post->title}}</h4></a>
 								<p>
 									inappropriate behavior Lorem ipsum dolor sit amet, consecteturinapprop riate behavior Lorem ipsum dolor sit amet, consectetur.
 								</p>
@@ -120,9 +120,8 @@
 								@foreach($latest_threes as $latest_three)
 									<div class="item">
 										<img src="{{asset('backend/images/uploads/'.$latest_three->image)}}" alt="">
-										<p class="mt-20 title text-uppercase">Home Audio Recording <br>
-										For Everyone</p>
-										<p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
+										<a href="{{route('post',$latest_three->slug)}}"> <p class="mt-20 title text-uppercase">{{$latest_three->title}}</p></a>
+										<p>{{$latest_three->created_at->diffForHumans()}}<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
 											06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
 										</div>
 										@endforeach

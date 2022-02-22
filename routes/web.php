@@ -32,6 +32,8 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
 {
     Route::get('dashboard',[AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile',[AdminDashboardController::class, 'adminProfile'])->name('profile');
+     // Route::get('edit-admin-profile',[AdminDashboardController::class, 'editProfile'])->name('edit-profile');
+     Route::post('update-profile',[AdminDashboardController::class, 'updateProfile'])->name('update-profile');
 
      Route::get('user',[UserController::class, 'index'])->name('user');
       Route::get('blog',[BlogController::class, 'index'])->name('blog');
@@ -51,6 +53,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
 Route::group(['prefix'=>'user','as'=>'user.','namespace'=>'User','middleware'=>['auth','user']],function()
 {
     Route::get('dashboard',[UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('profile',[UserDashboardController::class, 'userProfile'])->name('profile');
 
 });
 

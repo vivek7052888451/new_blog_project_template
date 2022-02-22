@@ -95,20 +95,13 @@
 					<div class="single_widget recent_widget">
 						<h4 class="text-uppercase pb-20">Recent Posts</h4>
 						<div class="active-recent-carusel">
-							<div class="item">
-								<img src="img/asset/xslider.jpg.pagespeed.ic.2wIBj9CEIN.jpg" alt="">
-								<p class="mt-20 title text-uppercase">Home Audio Recording <br>
-								For Everyone</p>
-								<p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-									06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-								</div>
+							
 								@isset($latest_threes)
 
 								@foreach($latest_threes as $latest_three)
 									<div class="item">
 										<img src="{{ asset('backend/images/uploads/'.$latest_three->image)}}" alt="">
-										<p class="mt-20 title text-uppercase">Home Audio Recording <br>
-										For Everyone</p>
+										<a href="{{route('post',$latest_three->slug)}}"> <p class="mt-20 title text-uppercase">{{$latest_three->title}}</p></a>
 										<p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
 											06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
 										</div>

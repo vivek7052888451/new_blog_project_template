@@ -77,8 +77,8 @@
         <div class="single-travel media pb-70">
           <img class="img-fluid d-flex  mr-3" width="350" height="350" src="{{ asset('backend/images/uploads/'.$latest_blog->image)}}" alt="$latest_blog->image">
           <div class="dates">
-            <span>20</span>
-            <p>Dec</p>
+           
+            <p>{{$latest_blog->created_at->diffForHumans()}}</p>
           </div>
           <div class="media-body align-self-center">
             <h4 class="mt-0"><a href="{{route('post',$latest_blog->slug)}}">{{$latest_blog->title}}</a></h4>
