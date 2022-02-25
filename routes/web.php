@@ -28,6 +28,17 @@ Auth::routes();
 
   
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+ Route::get('allblog',[HomeController::class, 'allPost'])->name('allblog');
+ Route::get('post/{id}',[HomeController::class, 'post'])->name('post');
+ Route::post('post-comment',[HomeController::class, 'postComment'])->name('post-comment');
+ Route::get('category',[HomeController::class, 'allCategory'])->name('category');
+ Route::get('category-list/{id}',[HomeController::class, 'categoryList'])->name('category-list');
+ Route::get('search',[HomeController::class, 'search'])->name('search');
+ Route::post('like-add',[HomeController::class, 'likeAdd'])->name('like-add');
+
+////admin/////////
+
 Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'=>['auth','admin']],function()
 {
     Route::get('dashboard',[AdminDashboardController::class, 'index'])->name('dashboard');
@@ -35,7 +46,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
      // Route::get('edit-admin-profile',[AdminDashboardController::class, 'editProfile'])->name('edit-profile');
      Route::post('update-profile',[AdminDashboardController::class, 'updateProfile'])->name('update-profile');
 
-     Route::get('user',[UserController::class, 'index'])->name('user');
+      Route::get('user',[UserController::class, 'index'])->name('user');
       Route::get('blog',[BlogController::class, 'index'])->name('blog');
       Route::post('blog-add',[BlogController::class, 'store'])->name('blog-add');
       Route::post('blog-delete',[BlogController::class, 'delete'])->name('blog-delete');
@@ -49,21 +60,11 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
       
 });
 
-
+////user//////////////////
 Route::group(['prefix'=>'user','as'=>'user.','namespace'=>'User','middleware'=>['auth','user']],function()
 {
     Route::get('dashboard',[UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile',[UserDashboardController::class, 'userProfile'])->name('profile');
+    Route::post('update-profile',[UserDashboardController::class, 'updateProfile'])->name('update-profile');
 
 });
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
- Route::get('allblog',[HomeController::class, 'allPost'])->name('allblog');
- Route::get('post/{id}',[HomeController::class, 'post'])->name('post');
- Route::post('post-comment',[HomeController::class, 'postComment'])->name('post-comment');
- Route::get('category',[HomeController::class, 'allCategory'])->name('category');
-
- Route::get('category-list/{id}',[HomeController::class, 'categoryList'])->name('category-list');
-
- Route::get('search',[HomeController::class, 'search'])->name('search');

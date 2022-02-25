@@ -11,14 +11,14 @@
               <a href="#">
                   <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
               </a>
-              <h1>@empty(!$admindata){{$admindata->name}} @endempty</h1>
-              <p>@empty(!$admindata){{$admindata->email}} @endempty</p>
+              <h1>{{$userdata->name ?? 'N/A'}}</h1>
+              <p></p>
           </div>
 
           <ul class="nav nav-pills nav-stacked bg-light mt-2">
           
              
-              <li><a href="#" data-toggle="modal" data-target="#edit_{{$admindata->id}}" type="button" > <i class="fa fa-edit"></i> Edit profile</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#edit_{{$userdata->id}}" type="button" > <i class="fa fa-edit"></i> Edit profile</a></li>
           </ul>
       </div>
   </div>
@@ -32,7 +32,7 @@
               <h1>Bio Graph</h1>
               <div class="row">
                   <div class="bio-row">
-                      <p><span>First Name </span>:{{ $admindata->name ?? 'N/A' }}</p>
+                      <p><span>First Name </span>:{{ $userdata->name ?? 'N/A' }}</p>
                   </div>
                   <div class="bio-row">
                       <p><span>Last Name </span>:</p>
@@ -47,7 +47,7 @@
                       <p><span>Occupation </span>:</p>
                   </div>
                   <div class="bio-row">
-                      <p><span>Email </span>: {{ $admindata->email ?? 'N/A' }}</p>
+                      <p><span>Email </span>: {{ $userdata->email ?? 'N/A' }}</p>
                   </div>
                   <div class="bio-row">
                       <p><span>Mobile </span>: </p>
@@ -68,7 +68,7 @@
 <!-------edit model--------------->
 
 <!-- Modal -->
-  <div class="modal fade" id="edit_{{$admindata->id}}" role="dialog">
+  <div class="modal fade" id="edit_{{$userdata->id}}" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -82,16 +82,16 @@
             @csrf
             <div class="form-group">
             <label for="name">Name:</label>
-            <input type="hidden" name="id" name='id' value="{{$admindata->id}}">
-            <input type="name" class="form-control" id="name" name="name" value="{{$admindata->name}}">
+            <input type="hidden" name="id" name='id' value="{{$userdata->id}}">
+            <input type="name" class="form-control" id="name" name="name" value="{{$userdata->name}}">
             </div>
             <div class="form-group">
             <label for="userid">UserId:</label>
-            <input type="text" class="form-control" id="userid" name="userid" value="{{$admindata->userid}}">
+            <input type="text" class="form-control" id="userid" name="userid" value="{{$userdata->userid}}">
             </div>
             <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{$admindata->email}}">
+            <input type="email" class="form-control" id="email" name="email" value="{{$userdata->email}}">
             </div>
 
             <div class="modal-footer">
@@ -159,7 +159,7 @@ required: "Please enter valid email",
                  // $('.blog_add_btn').prop('disabled', true);
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route("admin.update-profile") }}',
+                    url: '{{ route("user.update-profile") }}',
 
                     
                     data: new FormData($("#formblog_data")[0]),

@@ -7,7 +7,9 @@ use App\Models\Admin\Blog;
 use App\Models\Admin\Category;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
@@ -98,5 +100,43 @@ class HomeController extends Controller
         $latest_threes=Blog::latest()->take(3)->get();
 
         return view('search')->with(compact('posts','latest_threes'));
+    }
+
+    public function likeAdd(Request $request)
+    { 
+       if (Auth::check()) {
+         $auth_id=Auth::user()->id;
+         $auth_name=Auth::user()->name;       
+         $blog_id=$request->id;
+
+         $likedata = Like::where('userid',$auth_id)->where('blog_id',$blog_id)->get('like_status');
+
+    if(!empty($likedata))
+    {
+        dd($likedata);
+    }
+    else
+    {
+        $auth_id=Auth::user()->id;
+        
+         $auth_name=Auth::user()->name;       
+         $blog_id=$request->id;
+        $user = Like::create([
+            'username'=>$auth_name,
+            'userid'=>$auth_id,          
+            'blog_id'=>$blog_id,
+            'like_status'=>'0',
+            
+        ]);
+    }         
+       }
+       else
+       {
+        dd('not auth user');
+       }
+      
+       
+
+               
     }
 }

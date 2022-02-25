@@ -84,7 +84,7 @@
             <h4 class="mt-0"><a href="{{route('post',$latest_blog->slug)}}">{{$latest_blog->title}}</a></h4>
             <p>{!! Str :: limit($latest_blog->discription,400) !!}</p>
             <div class="meta-bottom d-flex justify-content-between">
-              <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+              <p><a class="like" href="javascript:void(0)" data-id="{{ $latest_blog->id }}"><span class="lnr lnr-heart"></span></a>15 Likes</p>
               <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
             </div>
           </div>
@@ -150,4 +150,37 @@
     </div>
   </div>
 </section>
+@endsection
+
+@section('custom')
+<script>
+
+  $('.like').on('click',function(){
+ 
+  var id=$(this).attr("data-id");
+alert(id);
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+  $.ajax({
+        type: 'POST',
+        url: '{{ route("like-add") }}',       
+        data: {id:id},      
+        success: function (response) {
+            //  toastr["success"]("Blog Post Successfully");
+            // document.getElementById("formblog_data").reset();
+            //  $('.blog_add_btn').html('Submit');
+            //  $('.blog_add_btn').prop('disabled', false);
+
+            //location.reload();    
+        },
+        error: function (error) {
+            // toastr["error"]("Oops! Something Went Wrong ! Try Again <i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i>");
+        }
+    });
+ })
+ 
+</script>
 @endsection
