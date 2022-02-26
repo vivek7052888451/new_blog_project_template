@@ -21,12 +21,12 @@ class HomeController extends Controller
         $blogs=Blog::all();
       
         $latest_blogs=Blog::latest()->take(6)->get();
+       
         return view('index')->with(compact('blogs','latest_blogs','blog_categorys'));
     }
 
     public function post($id)
-    {
-       
+    {       
         $posts=Blog::where('slug',$id)->first();
         $blog_id=$posts->id;
 
