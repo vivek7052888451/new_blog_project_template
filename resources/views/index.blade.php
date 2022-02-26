@@ -1,4 +1,3 @@
-
    
 @extends('layouts.forntend.app')
 @section('title')
@@ -176,20 +175,13 @@ alert(id);
         url: '{{ route("like-add") }}',       
         data: {id:id},      
         success: function (response) {
-          if(response.success=='done1')
-          {
-
-          }
-          else
-          {
-
-          }
+         
             //  toastr["success"]("Blog Post Successfully");
             // document.getElementById("formblog_data").reset();
             //  $('.blog_add_btn').html('Submit');
             //  $('.blog_add_btn').prop('disabled', false);
 
-            //location.reload();    
+            location.reload();    
         },
         error: function (error) {
             // toastr["error"]("Oops! Something Went Wrong ! Try Again <i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i>");
