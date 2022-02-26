@@ -105,38 +105,55 @@ class HomeController extends Controller
     public function likeAdd(Request $request)
     { 
        if (Auth::check()) {
-         $auth_id=Auth::user()->id;
-         $auth_name=Auth::user()->name;       
-         $blog_id=$request->id;
+             $auth_id=Auth::user()->id;
+             $auth_name=Auth::user()->name;       
+             $blog_id=$request->id;
+             $data=Like::where('userid',$auth_id)->where('blog_id',$blog_id)->get()->toArray();
 
-         $likedata = Like::where('userid',$auth_id)->where('blog_id',$blog_id)->get('like_status');
+            if(count($data) == 0)
+            {
+                 $user = Like::create([
+                'username'=>$auth_name,
+                'userid'=>$auth_id,          
+                'blog_id'=>$blog_id,           
+            ]);
+            }
+            else
+                {
+                 $data=Like::where('userid',$auth_id)->where('blog_id',$blog_id)->first()->like_status;
+                     if(!$data == '1')
+                     {
+                        $status=Like::where('userid',$auth_id)->where('blog_id',$blog_id)->update(
+                        ["like_status" =>'1']);
 
-    if(!empty($likedata))
-    {
-        dd($likedata);
-    }
-    else
-    {
-        $auth_id=Auth::user()->id;
-        
-         $auth_name=Auth::user()->name;       
-         $blog_id=$request->id;
-        $user = Like::create([
-            'username'=>$auth_name,
-            'userid'=>$auth_id,          
-            'blog_id'=>$blog_id,
-            'like_status'=>'0',
-            
-        ]);
-    }         
+
+                         if ($status) {
+                                return response()->json(['success'=>'done1']);
+                            }
+                            else {
+                                return response()->json(['error'=>'failed']);
+                            }
+                     }
+                     else
+                     {
+                         $status=Like::where('userid',$auth_id)->where('blog_id',$blog_id)->update(
+                        ["like_status" =>'0']);
+
+
+                         if ($status) {
+                                return response()->json(['success'=>'done2']);
+                            }
+                            else {
+                                return response()->json(['error'=>'failed']);
+                            }
+                     }
+            }
+                    
        }
        else
        {
-        dd('not auth user');
+        dd('You are not Auth user');
        }
-      
-       
-
-               
+        
     }
 }

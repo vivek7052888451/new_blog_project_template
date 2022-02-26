@@ -169,6 +169,14 @@ alert(id);
         url: '{{ route("like-add") }}',       
         data: {id:id},      
         success: function (response) {
+          if(response.success=='done1')
+          {
+
+          }
+          else
+          {
+
+          }
             //  toastr["success"]("Blog Post Successfully");
             // document.getElementById("formblog_data").reset();
             //  $('.blog_add_btn').html('Submit');
