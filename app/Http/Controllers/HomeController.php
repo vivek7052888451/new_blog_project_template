@@ -34,7 +34,9 @@ class HomeController extends Controller
         $comments =Comment::latest()->where("blog_id",$blog_id)->get();
 
         $latest_threes=Blog::latest()->take(3)->get();
-        return view('postdetails')->with(compact('posts','latest_posts','comments','latest_threes'));     
+        $Posts_categorys=Category::latest()->get();
+
+        return view('postdetails')->with(compact('posts','latest_posts','comments','latest_threes','Posts_categorys'));     
     }
 
     public function postComment(Request $request)
@@ -79,7 +81,7 @@ class HomeController extends Controller
          $latestposts=Blog::latest()->get();
          $latest_threes=Blog::latest()->take(3)->get();  
 
-       return view('listing')->with(compact('latestposts','category','category_datas','latest_threes'));
+       return view('listing')->with(compact('latestposts','category','category_datas','latest_threes','latest_category'));
     }
 
     public function allCategory()
@@ -96,10 +98,9 @@ class HomeController extends Controller
         $this->validate($request,['search'=>'required |max:255']);
         $search=$request->search;
         $posts=Blog::where('title','like', "%$search%")->get();
-
         $latest_threes=Blog::latest()->take(3)->get();
-
-        return view('search')->with(compact('posts','latest_threes'));
+        $latest_category=Category::latest()->get();
+        return view('search')->with(compact('posts','latest_threes','latest_category'));
     }
 
     public function likeAdd(Request $request)

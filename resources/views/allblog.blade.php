@@ -1,6 +1,6 @@
 @extends('layouts.forntend.app')
 @section('title')
-<title>{{env('APP_NAME')}} |Home</title>
+<title>{{env('APP_NAME')}} | ALL BLOG</title>
 @endsection
 
 @section('content')
