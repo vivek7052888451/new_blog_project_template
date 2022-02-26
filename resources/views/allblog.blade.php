@@ -82,27 +82,17 @@
 					<div class="single_widget cat_widget">
 						<h4 class="text-uppercase pb-20">post categories</h4>
 						<ul>
+							@isset($blog_categorys)
+							 @foreach($blog_categorys as $category)
+							@php
+							 $total = App\Models\Admin\Blog::where('category_id', $category->id)->get()->count();
+							@endphp	
+												 
 							<li>
-								<a href="#">Technology <span>37</span></a>
+								<a href="{{route('category-list',$category->slug)}}">{{$category->category_name}}<span>{{$total ?? '0'}}</span></a>
 							</li>
-							<li>
-								<a href="#">Lifestyle <span>37</span></a>
-							</li>
-							<li>
-								<a href="#">Fashion <span>37</span></a>
-							</li>
-							<li>
-								<a href="#">Art <span>37</span></a>
-							</li>
-							<li>
-								<a href="#">Food <span>37</span></a>
-							</li>
-							<li>
-								<a href="#">Architecture <span>37</span></a>
-							</li>
-							<li>
-								<a href="#">Adventure <span>37</span></a>
-							</li>
+							@endforeach
+							@endisset
 						</ul>
 					</div>
 					<div class="single_widget recent_widget">

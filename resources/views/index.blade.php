@@ -76,9 +76,11 @@
        @php
        $like = App\Models\Like::where('blog_id', $latest_blog->id)->where('like_status','1')->get('like_status')->count();
 
+       $comments = App\Models\Comment::where('blog_id', $latest_blog->id)->get('comment')->count();
 
+    
       @endphp
-      
+     
       <div class="col-lg-6 travel-left">
         <div class="single-travel media pb-70">
           <img class="img-fluid d-flex  mr-3" width="350" height="350" src="{{ asset('backend/images/uploads/'.$latest_blog->image)}}" alt="$latest_blog->image">
@@ -90,8 +92,8 @@
             <h4 class="mt-0"><a href="{{route('post',$latest_blog->slug)}}">{{$latest_blog->title}}</a></h4>
             <p>{!! Str :: limit($latest_blog->discription,400) !!}</p>
             <div class="meta-bottom d-flex justify-content-between">
-              <p><a class="like" href="javascript:void(0)" data-id="{{ $latest_blog->id }}"><span class="lnr lnr-heart"></span></a>{{$like}}</p>
-              <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+              <p><a class="like" href="javascript:void(0)" data-id="{{ $latest_blog->id }}"><span class="lnr lnr-heart"></span></a>{{$like ?? '0'}} Like</p>
+              <p><span class="lnr lnr-bubble"></span>{{$comments ?? '0'}} Comments</p>
             </div>
           </div>
         </div>     
