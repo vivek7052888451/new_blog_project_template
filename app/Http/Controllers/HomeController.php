@@ -16,6 +16,7 @@ class HomeController extends Controller
    
     public function index()
     {
+        
         $blog_categorys=Category::latest()->get();
        
         $blogs=Blog::all();

@@ -19,6 +19,7 @@
           
              
               <li><a href="#" data-toggle="modal" data-target="#edit_{{$userdata->id}}" type="button" > <i class="fa fa-edit"></i> Edit profile</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#reset_{{$userdata->id}}" type="button" > <i class="fa fa-edit"></i> Reset Password</a></li>
           </ul>
       </div>
   </div>
@@ -107,6 +108,46 @@
     </div>
   </div>
 
+  <!--------reset model-->
+
+ <div class="modal fade" id="reset_{{$userdata->id}}" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Profile</h4>
+        </div>
+        <div class="modal-body">
+         <form id="reset_data">
+            @csrf
+            <div class="form-group">
+            <label for="name">Old Password</label>
+            <input type="hidden" name="id" name='id' value="{{$userdata->id}}">
+            <input type="text" class="form-control" id="oldpass" name="oldpass">
+            </div>
+            <div class="form-group">
+            <label for="newpass">New Password:</label>
+            <input type="password" class="form-control" id="newpass" name="newpass">
+            </div>
+            <div class="form-group">
+            <label for="cpass">Confirm Password:</label>
+            <input type="password" class="form-control" id="cpass" name="cpass" value="">
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Reset</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+        </form>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
 @endsection
 @section('custom-script')
 <link rel="stylesheet" type="text/css" href="{{asset('backend/assets/css/custom.css')}}">
@@ -176,6 +217,73 @@ required: "Please enter valid email",
                     },
                     error: function (error) {
                         toastr["error"]("Oops! Something Went Wrong ! Try Again <i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i>");
+                    }
+                });
+            }
+})
+}
+</script>
+
+<script>
+
+if ($("#reset_data").length > 0) {
+$("#reset_data").validate({
+rules: {
+oldpass: {
+required: true,
+
+},
+newpass: {
+required: true,
+
+},  
+cpass: {
+required: true,
+
+},   
+},
+messages: {
+oldpass: {
+required: "Please enter oldpass",
+
+},
+newpass: {
+required: "Please enter newpass",
+
+},   
+cpass: {
+required: "Please enter cpass",
+
+},
+},
+ submitHandler: function(form) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                 //  $('.blog_add_btn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Blog Added..');
+                 // $('.blog_add_btn').prop('disabled', true);
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route("user.reset-password") }}',
+
+                    
+                    data: new FormData($("#reset_data")[0]),
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        //  toastr["success"]("Update Profile Successfully");
+                        // document.getElementById("formblog_data").reset();
+                        //  $('.profile_add_btn').html('Updated');
+                        //  $('.profile_add_btn').prop('disabled', false);
+
+                        // location.reload();    
+                    },
+                    error: function (error) {
+                        // toastr["error"]("Oops! Something Went Wrong ! Try Again <i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i>");
                     }
                 });
             }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Like;
 use Auth;
 
 class UserDashboardController extends Controller
@@ -14,8 +15,9 @@ class UserDashboardController extends Controller
     {
         $userid=Auth::user()->id;
         $userComments=Comment::where('userid',$userid)->count();
+        $userLikes=Like::where('userid',$userid)->count();
         
-        return view('user.index')->with(compact('userComments'));
+        return view('user.index')->with(compact('userComments','userLikes'));
     }
 
     public function userProfile()
@@ -44,5 +46,19 @@ class UserDashboardController extends Controller
                 return response()->json(['error'=>'failed']);
             }
         
+       }
+
+       public function showAllComment()
+       {
+        $id=Auth::User()->id;
+        $userComments=Comment::where('userid',$id)->get();
+        return response()->json(['item' => $userComments]);
+       }
+       public function resetPassword(Request $request)
+       {
+        $id=$request->id;
+        $userpass=User::find($id);
+        dd($userpass->password);
+
        }
 }

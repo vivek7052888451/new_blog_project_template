@@ -52,7 +52,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
                         
-                             <li><i class="fa fa-table"></i><a href="#">Users</a></li>
+                             <li><i class="fa fa-table"></i><a href="#">User View</a></li>
                            
                         </ul>
                     </li>

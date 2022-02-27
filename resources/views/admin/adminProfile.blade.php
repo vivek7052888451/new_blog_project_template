@@ -11,8 +11,8 @@
               <a href="#">
                   <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
               </a>
-              <h1>@empty(!$admindata){{$admindata->name}} @endempty</h1>
-              <p>@empty(!$admindata){{$admindata->email}} @endempty</p>
+              <h1>{{$admindata->name ?? 'N/A'}}</h1>
+              <p>{{$admindata->email ?? 'N/A'}}</p>
           </div>
 
           <ul class="nav nav-pills nav-stacked bg-light mt-2">

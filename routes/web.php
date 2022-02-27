@@ -43,7 +43,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
 {
     Route::get('dashboard',[AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile',[AdminDashboardController::class, 'adminProfile'])->name('profile');
-     // Route::get('edit-admin-profile',[AdminDashboardController::class, 'editProfile'])->name('edit-profile');
+     
      Route::post('update-profile',[AdminDashboardController::class, 'updateProfile'])->name('update-profile');
 
       Route::get('user',[UserController::class, 'index'])->name('user');
@@ -57,6 +57,11 @@ Route::group(['prefix'=>'admin','as'=>'admin.','namespace'=>'Admin','middleware'
       Route::post('category-delete',[BlogController::class, 'deleteCategory'])->name('category-delete');
        Route::post('category-update',[BlogController::class, 'categoryUpdate'])->name('category-update');
       Route::post('user-delete',[UserController::class, 'deleteUser'])->name('user-delete');
+
+      Route::get('total-user',[AdminDashboardController::class, 'totalUser'])->name('total-user');
+      Route::get('total-comment',[AdminDashboardController::class, 'totalComment'])->name('total-comment');
+    Route::get('total-blog',[AdminDashboardController::class, 'totalBlog'])->name('total-blog');
+    Route::get('total-like',[AdminDashboardController::class, 'totalLike'])->name('total-like');
       
 });
 
@@ -66,5 +71,7 @@ Route::group(['prefix'=>'user','as'=>'user.','namespace'=>'User','middleware'=>[
     Route::get('dashboard',[UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('profile',[UserDashboardController::class, 'userProfile'])->name('profile');
     Route::post('update-profile',[UserDashboardController::class, 'updateProfile'])->name('update-profile');
+    Route::get('AllComment',[UserDashboardController::class,'showAllComment'])->name('userComment');
 
+    Route::post('reset-password',[UserDashboardController::class,'resetPassword'])->name('reset-password');
 });
