@@ -74,6 +74,8 @@
 
       @foreach($latest_blogs as $latest_blog)
        @php
+      
+
        $like = App\Models\Like::where('blog_id', $latest_blog->id)->where('like_status','1')->get('like_status')->count();
 
        $comments = App\Models\Comment::where('blog_id', $latest_blog->id)->get('comment')->count();
@@ -92,7 +94,11 @@
             <h4 class="mt-0"><a href="{{route('post',$latest_blog->slug)}}">{{$latest_blog->title}}</a></h4>
             <p>{!! Str :: limit($latest_blog->discription,400) !!}</p>
             <div class="meta-bottom d-flex justify-content-between">
-              <p><a class="like" href="javascript:void(0)" data-id="{{ $latest_blog->id }}"><span class="lnr lnr-heart"></span></a>{{$like ?? '0'}} Like</p>
+              <p>@if(Auth::check())<a class="like" href="javascript:void(0)" data-id="{{ $latest_blog->id }}"><span class="lnr lnr-heart"> {{$like ?? '0'}} Like</span></a>
+                @else
+                <span class="lnr lnr-heart"> {{$like ?? '0'}} Like</span></p>
+               @endif
+
               <p><span class="lnr lnr-bubble"></span>{{$comments ?? '0'}} Comments</p>
             </div>
           </div>
@@ -161,35 +167,5 @@
 @endsection
 
 @section('custom')
-<script>
 
-  $('.like').on('click',function(){
- 
-  var id=$(this).attr("data-id");
-alert(id);
-    $.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-  });
-  $.ajax({
-        type: 'POST',
-        url: '{{ route("like-add") }}',       
-        data: {id:id},      
-        success: function (response) {
-         
-            //  toastr["success"]("Blog Post Successfully");
-            // document.getElementById("formblog_data").reset();
-            //  $('.blog_add_btn').html('Submit');
-            //  $('.blog_add_btn').prop('disabled', false);
-
-            location.reload();    
-        },
-        error: function (error) {
-            // toastr["error"]("Oops! Something Went Wrong ! Try Again <i class=\"fa fa-frown-o\" aria-hidden=\"true\"></i>");
-        }
-    });
- })
- 
-</script>
 @endsection

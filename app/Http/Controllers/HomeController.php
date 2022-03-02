@@ -21,7 +21,7 @@ class HomeController extends Controller
        
         $blogs=Blog::all();
       
-        $latest_blogs=Blog::latest()->take(6)->get();
+        $latest_blogs=Blog::latest()->get();
        
         return view('index')->with(compact('blogs','latest_blogs','blog_categorys'));
     }
@@ -29,15 +29,20 @@ class HomeController extends Controller
     public function post($id)
     {       
         $posts=Blog::where('slug',$id)->first();
+
         $blog_id=$posts->id;
 
          $latest_posts=Blog::latest()->take(5)->get();
         $comments =Comment::latest()->where("blog_id",$blog_id)->get();
+        $count =Comment::where("blog_id",$blog_id)->count();
+        $countLikes =Like::where("blog_id",$blog_id)->where('like_status','1')->count();
+       
+
 
         $latest_threes=Blog::latest()->take(3)->get();
         $Posts_categorys=Category::latest()->get();
 
-        return view('postdetails')->with(compact('posts','latest_posts','comments','latest_threes','Posts_categorys'));     
+        return view('postdetails')->with(compact('posts','latest_posts','comments','latest_threes','Posts_categorys','count','countLikes'));     
     }
 
     public function postComment(Request $request)

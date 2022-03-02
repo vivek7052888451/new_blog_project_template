@@ -53,10 +53,10 @@
                 <div class="row">
                   <div class="col-lg-4 single-b-wrap col-md-12">
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    lily and 4 people like this
+                    {{$countLikes ?? '0'}} people like this
                   </div>
                   <div class="col-lg-4 single-b-wrap col-md-12">
-                    <i class="fa fa-comment-o" aria-hidden="true"></i> 06 comments
+                    <i class="fa fa-comment-o" aria-hidden="true"></i> {{$count ?? '0'}} comments
                   </div>
                   <div class="col-lg-4 single-b-wrap col-md-12">
                     <ul class="social-icons">
@@ -74,7 +74,7 @@
               <section class="comment-sec-area pt-80 pb-80">
                 <div class="container">
                   <div class="row flex-column">
-                    <h5 class="text-uppercase pb-80">05 Comments</h5>
+                    <h5 class="text-uppercase pb-80">Comments</h5>
                     <br>
                     @isset($comments)
                     @foreach($comments as $comment)
@@ -165,6 +165,7 @@
              
                 @isset($latest_threes)
                 @foreach($latest_threes as $latest_three)
+                
                   <div class="item">
                     <img src="{{ asset('backend/images/uploads/'.$latest_three->image)}}" width="200" height="200" alt="">
                    <a href="{{route('post',$latest_three->slug)}}"> <p class="mt-20 title text-uppercase">{{$latest_three->title}}</p></a>

@@ -33,6 +33,11 @@
 							<div class="row justify-content-center">
 								@isset($blogs)
 								@foreach($blogs as $blog)
+								  @php
+							       $like = App\Models\Like::where('blog_id', $blog->id)->where('like_status','1')->get('like_status')->count();
+
+							       $comments = App\Models\Comment::where('blog_id', $blog->id)->get('comment')->count();							
+							      @endphp
 								<div class="single-posts col-lg-6 col-sm-6">
 									<img class="img-fluid" src="{{ asset('backend/images/uploads/'.$blog->image)}}" alt="">
 									<div class="date mt-20 mb-20">{{$blog->created_at}}</div>
@@ -43,8 +48,14 @@
 											{!! Str :: limit($blog->discription,400) !!}
 										</p>
 										<p class="footer pt-20">
+											@if(Auth::check())<a class="like" href="javascript:void(0)" data-id="{{ $blog->id }}"><i class="fa fa-heart-o" aria-hidden="true"></i>
+											{{$like ?? '0'}} Likes</a>
+											@else
 											<i class="fa fa-heart-o" aria-hidden="true"></i>
-											<a href="#">06 Likes</a> <i class="ml-20 fa fa-comment-o" aria-hidden="true"></i> <a href="#">02 Comments</a>
+											{{$like ?? '0'}} Likes
+											@endif
+
+											 <i class="ml-20 fa fa-comment-o" aria-hidden="true"></i> {{$comments ?? '0'}} Comments
 										</p>
 									</div>
 								</div>
